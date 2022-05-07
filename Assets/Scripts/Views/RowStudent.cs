@@ -2,7 +2,7 @@ using UnityEngine;
 using Models;
 using UnityEngine.UI;
 
-public class RowStudent : MonoBehaviour
+public class RowStudent : MonoBehaviour, IStudent
 {
     [SerializeField]
     private Text firstname;
@@ -24,7 +24,7 @@ public class RowStudent : MonoBehaviour
         check.isOn = Student.balance > 2.9f; //TODO: Eliminar set
     }
 
-    public bool ValidateNote()
+    public bool ValidateFinalGrade()
     {
         return (Student.balance > 2.9f && check.isOn) || (Student.balance < 3 && !check.isOn);
     }

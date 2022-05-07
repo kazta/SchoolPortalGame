@@ -10,15 +10,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextAsset jsonFile;
     [SerializeField]
-    private Transform studentsPanel;
-    [SerializeField]
-    private GameObject studentRow;
+    private Transform[] studentsPanel;
     [SerializeField]
     private GameObject[] levels;
+    [SerializeField]
+    private GameObject[] studentUI;
 
     private short currentLevel;
     private StudentModel[] students;
-    private List<RowStudent> studentsRow;
+    private List<List<GameObject>> studentsRow;
 
     private static object syncLock = new();
 
@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
         studentsRow = new();
         string jsonString = jsonFile.text;
         students = JsonUtility.FromJson<StudentList>(jsonString).students;
+
+        for (int i = 0; i < levels.Length; i++)
+            studentsRow.Add(new());
     }
 
     private void OnEnable()
@@ -63,25 +66,27 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (studentsRow.Count == 0 || studentsRow.Count < students.Length)
+        var rows = studentsRow[currentLevel];
+
+        if (rows.Count == 0 || rows.Count < students.Length)
         {
-            var difference = students.Length - studentsRow.Count;
+            var difference = students.Length - rows.Count;
 
             for (int i = 0; i < difference; i++)
             {
-                GameObject obj = Instantiate(studentRow);
-                obj.transform.SetParent(studentsPanel, false);
-                studentsRow.Add(obj.GetComponent<RowStudent>());
+                GameObject obj = Instantiate(studentUI[currentLevel]);
+                obj.transform.SetParent(studentsPanel[currentLevel], false);
+                rows.Add(obj);
             }
         }
-        else if (studentsRow.Count > students.Length)
+        else if (rows.Count > students.Length)
         {
 
-            var difference = studentsRow.Count - students.Length;
+            var difference = rows.Count - students.Length;
 
             for (int i = 0; i < difference; i++)
             {
-                studentsRow[i].gameObject.SetActive(false);
+                rows[i].SetActive(false);
             }
         }
 
@@ -90,25 +95,28 @@ public class GameManager : MonoBehaviour
 
     private void UpdateData()
     {
+        var rows = studentsRow[currentLevel];
         for (int i = 0; i < students.Length; i++)
         {
-            studentsRow[i].SetStudent(students[i]);
+            rows[i].GetComponent<IStudent>().SetStudent(students[i]);
         }
     }
-    #endregion
 
     public void ValidateStudents()
     {
-        foreach (var student in studentsRow)
+        var rows = studentsRow[currentLevel];
+        foreach (var student in rows)
         {
-            if (!student.ValidateNote())
+            if (!student.GetComponent<IStudent>().ValidateFinalGrade())
             {
-                //TODO: Agregar show message
+                Debug.Log("Paila");//TODO: Agregar show message
                 return;
             }
         }
+        Debug.Log("Brevas");
         NextLevel();
     }
+    #endregion
 
     #region Levels
     private void NextLevel()
@@ -117,6 +125,10 @@ public class GameManager : MonoBehaviour
         {
             levels[currentLevel].SetActive(false);
             currentLevel++;
+            if(currentLevel == levels.Length)
+            {
+                return;
+            }
             levels[currentLevel].SetActive(true);
         }
     }
