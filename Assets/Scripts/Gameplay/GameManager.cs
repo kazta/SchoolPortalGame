@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
     private Transform studentsPanel;
     [SerializeField]
     private GameObject studentRow;
+    [SerializeField]
+    private GameObject[] levels;
 
+    private short currentLevel;
     private StudentModel[] students;
-    private List<GameObject> studentsRow;
+    private List<RowStudent> studentsRow;
 
     private static object syncLock = new();
 
@@ -35,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        currentLevel = 0;
         studentsRow = new();
         string jsonString = jsonFile.text;
         students = JsonUtility.FromJson<StudentList>(jsonString).students;
@@ -42,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating("UpdateRows", 5, 7);
+        InvokeRepeating("UpdateRows", 0, 7);
     }
 
     private void OnDisable()
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
         CancelInvoke("UpdateRows");
     }
 
+    #region data
     private void UpdateRows()
     {
         if (students == null)
@@ -65,8 +70,8 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < difference; i++)
             {
                 GameObject obj = Instantiate(studentRow);
-                obj.transform.SetParent(studentsPanel,false);
-                studentsRow.Add(obj);
+                obj.transform.SetParent(studentsPanel, false);
+                studentsRow.Add(obj.GetComponent<RowStudent>());
             }
         }
         else if (studentsRow.Count > students.Length)
@@ -76,7 +81,7 @@ public class GameManager : MonoBehaviour
 
             for (int i = 0; i < difference; i++)
             {
-                studentsRow[i].SetActive(false);
+                studentsRow[i].gameObject.SetActive(false);
             }
         }
 
@@ -87,8 +92,43 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < students.Length; i++)
         {
-            RowStudent row = studentsRow[i].GetComponent<RowStudent>();
-            row.SetStudent(students[i]);
+            studentsRow[i].SetStudent(students[i]);
         }
     }
+    #endregion
+
+    public void ValidateStudents()
+    {
+        foreach (var student in studentsRow)
+        {
+            if (!student.ValidateNote())
+            {
+                //TODO: Agregar show message
+                return;
+            }
+        }
+        NextLevel();
+    }
+
+    #region Levels
+    private void NextLevel()
+    {
+        if (currentLevel < levels.Length)
+        {
+            levels[currentLevel].SetActive(false);
+            currentLevel++;
+            levels[currentLevel].SetActive(true);
+        }
+    }
+
+    private void ResetLevel()
+    {
+
+    }
+
+    private void RestartGame()
+    {
+
+    }
+    #endregion
 }

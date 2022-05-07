@@ -21,5 +21,11 @@ public class RowStudent : MonoBehaviour
         firstname.text = Student.firtsname;
         surname.text = Student.surname;
         balance.text = Student.balance.ToString();
+        check.isOn = Student.balance > 2.9f; //TODO: Eliminar set
+    }
+
+    public bool ValidateNote()
+    {
+        return (Student.balance > 2.9f && check.isOn) || (Student.balance < 3 && !check.isOn);
     }
 }
