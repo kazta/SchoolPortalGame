@@ -50,9 +50,10 @@ public class CircleStudent : MonoBehaviour, IStudent, IDragHandler, IBeginDragHa
 
     public bool ValidateFinalGrade()
     {
-        if (!GetComponentInParent<DropZone>())
+        var zoneType = GetComponentInParent<DropZone>().zoneType;
+        if (zoneType == ZoneType.Neutral)
             return false;
-        return (Student.balance > 2.9f && GetComponentInParent<DropZone>().zoneType == ZoneType.Approved)
-            || (Student.balance < 3 && GetComponentInParent<DropZone>().zoneType == ZoneType.Failed);
+        return (Student.balance > 2.9f && zoneType == ZoneType.Approved)
+            || (Student.balance < 3 && zoneType == ZoneType.Failed);
     }
 }

@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Models;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { private set; get; }
-
     [SerializeField]
     private TextAsset jsonFile;
     [SerializeField]
@@ -20,28 +17,10 @@ public class GameManager : MonoBehaviour
     private StudentModel[] students;
     private List<List<GameObject>> studentsRow;
 
-    private static object syncLock = new();
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            lock (syncLock)
-            {
-                if (Instance == null)
-                {
-                    Instance = this;
-                }
-            }
-        }
-    }
-
     private void Start()
     {
         currentLevel = 0;
         studentsRow = new();
-        string jsonString = jsonFile.text;
-        students = JsonUtility.FromJson<StudentList>(jsonString).students;
 
         for (int i = 0; i < levels.Length; i++)
             studentsRow.Add(new());
@@ -49,15 +28,20 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating("UpdateRows", 0, 7);
+        InvokeRepeating("LoadJsonFile", 0, 7);
     }
 
     private void OnDisable()
     {
-        CancelInvoke("UpdateRows");
+        CancelInvoke("LoadJsonFile");
     }
 
     #region data
+    private void LoadJsonFile()
+    {
+        students = JsonUtility.FromJson<StudentList>(jsonFile.text).students;
+        UpdateRows();
+    }
     private void UpdateRows()
     {
         if (students == null)
@@ -127,6 +111,7 @@ public class GameManager : MonoBehaviour
             currentLevel++;
             if(currentLevel == levels.Length)
             {
+                CancelInvoke("LoadJsonFile");
                 return;
             }
             levels[currentLevel].SetActive(true);

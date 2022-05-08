@@ -3,6 +3,7 @@ namespace Utils
     public enum ZoneType
     {
         Failed,
-        Approved
+        Approved,
+        Neutral
     }
 }
