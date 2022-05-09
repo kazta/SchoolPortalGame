@@ -1,0 +1,61 @@
+{
+    "students": [
+        {
+            "id": "6275399000e47eda68a711b8",
+            "index": 0,
+            "balance": 0.37,
+            "age": 14,
+            "firtsname": "Lindsay",
+            "surname": "Duncan"
+        },
+        {
+            "id": "62753990f74cc91873f6fd95",
+            "index": 1,
+            "balance": 2.51,
+            "age": 35,
+            "firtsname": "Blackwell",
+            "surname": "Myers"
+        },
+        {
+            "id": "62753990f54ad51ccbb8eb3a",
+            "index": 2,
+            "balance": 0.16,
+            "age": 16,
+            "firtsname": "Elma",
+            "surname": "Murray"
+        },
+        {
+            "id": "62753990e3be4b0cc24ae276",
+            "index": 3,
+            "balance": 1.87,
+            "age": 15,
+            "firtsname": "Kathrine",
+            "surname": "Simmons"
+        },
+        {
+            "id": "62753990879470a8d2a94933",
+            "index": 4,
+            "balance": 3.62,
+            "age": 13,
+            "firtsname": "Compton",
+            "surname": "Armstrong"
+        },
+        {
+            "id": "62753990879470a8d2b94933",
+            "index": 5,
+            "balance": 3.89,
+            "age": 13,
+            "firtsname": "Carmenon",
+            "surname": "Armstrong"
+        },
+        {
+            "id": "72753990879470a8d2b94933",
+            "index": 5,
+            "balance": 5.00,
+            "age": 13,
+            "firtsname": "Tastiana",
+            "surname": "Diaz"
+        }
+
+    ]
+}
