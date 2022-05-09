@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Models;
+using Utils;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,8 +9,6 @@ public class GameManager : MonoBehaviour
     private TextAsset jsonFile;
     [SerializeField]
     private Transform[] studentsPanel;
-    [SerializeField]
-    private Message message;
     [SerializeField]
     private GameObject[] levels;
     [SerializeField]
@@ -113,7 +112,7 @@ public class GameManager : MonoBehaviour
         {
             if (!student.GetComponent<IStudent>().ValidateFinalGrade())
             {
-                message.Show();
+                Message.Instance.Show(MessageType.Error.ToString());
                 return;
             }
         }

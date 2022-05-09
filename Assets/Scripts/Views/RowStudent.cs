@@ -12,8 +12,22 @@ public class RowStudent : MonoBehaviour, IStudent
     private Text balance;
     [SerializeField]
     private Toggle check;
+    [SerializeField]
+    private Button more;
+    [SerializeField]
+    private AudioClip audio;
+
+    private AudioSource audioSource;
 
     public StudentModel Student { get; private set; }
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = audio;
+        check.onValueChanged.AddListener(delegate { ToggleValueChange(); });
+        more.onClick.AddListener(delegate { Message.Instance.SetDataToEdidt(Student); });
+    }
 
     public void SetStudent(StudentModel student)
     {
@@ -28,4 +42,10 @@ public class RowStudent : MonoBehaviour, IStudent
     {
         return (Student.balance > 2.9f && check.isOn) || (Student.balance < 3 && !check.isOn);
     }
+
+    private void ToggleValueChange()
+    {
+        audioSource.Play();
+    }
+
 }
