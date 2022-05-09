@@ -10,16 +10,19 @@ public class CircleStudent : MonoBehaviour, IStudent, IDragHandler, IBeginDragHa
     private Text fullname;
     [SerializeField]
     private Text balance;
-    [SerializeField]
-    private Transform dragZone;
 
+    private Canvas canvas;
+    private Transform dragZone;
+    private RectTransform rTransform;
     private CanvasGroup canvasGroup;
 
     public StudentModel Student { get; private set; }
 
     private void Start()
     {
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         dragZone = GameObject.Find("Level2").transform;
+        rTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
@@ -32,7 +35,7 @@ public class CircleStudent : MonoBehaviour, IStudent, IDragHandler, IBeginDragHa
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        rTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
