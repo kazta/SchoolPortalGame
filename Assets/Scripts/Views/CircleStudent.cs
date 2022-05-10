@@ -48,7 +48,7 @@ public class CircleStudent : MonoBehaviour, IStudent, IDragHandler, IBeginDragHa
     {
         Student = student;
         fullname.text = $"{Student.firtsname} {Student.surname}";
-        balance.text = Student.balance.ToString();
+        balance.text = Student.finalGrade.ToString();
     }
 
     public bool ValidateFinalGrade()
@@ -56,8 +56,8 @@ public class CircleStudent : MonoBehaviour, IStudent, IDragHandler, IBeginDragHa
         var zoneType = GetComponentInParent<DropZone>().zoneType;
         if (zoneType == ZoneType.Neutral)
             return false;
-        return (Student.balance > 2.9f && zoneType == ZoneType.Approved)
-            || (Student.balance < 3 && zoneType == ZoneType.Failed);
+        return (Student.finalGrade > 2.9f && zoneType == ZoneType.Approved)
+            || (Student.finalGrade < 3 && zoneType == ZoneType.Failed);
     }
 
     public void OnPointerClick(PointerEventData eventData)

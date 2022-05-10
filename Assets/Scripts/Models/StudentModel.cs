@@ -7,7 +7,7 @@ namespace Models
     {
         public string id;
         public short index;
-        public float balance;
+        public float finalGrade;
         public short age;
         public string firtsname;
         public string surname;
