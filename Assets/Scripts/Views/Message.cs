@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Models;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +13,8 @@ public class Message : MonoBehaviour
     [SerializeField]
     private GameObject editStudent;
     [SerializeField]
+    private GameObject editJson;
+    [SerializeField]
     private InputField firstname;
     [SerializeField]
     private InputField surname;
@@ -18,8 +22,21 @@ public class Message : MonoBehaviour
     private InputField age;
     [SerializeField]
     private InputField balance;
+    [SerializeField]
+    private InputField jsonEdit;
+    [SerializeField]
+    private Button cancelStudent;
+    [SerializeField]
+    private Button cancelJson;
+    [SerializeField]
+    private Button okError;
 
-    private Object synclock = new();
+    private StudentModel Student;
+    private UnityEngine.Object synclock = new();
+    private Dictionary<MessageType, ShowMessage> dictionary;
+
+    private delegate void ShowMessage(bool isActive);
+    private ShowMessage showMessage;
 
     private void Awake()
     {
@@ -27,30 +44,55 @@ public class Message : MonoBehaviour
             lock (synclock)
                 if (Instance == null)
                     Instance = this;
+    }
+
+    private void Start()
+    {
+        showMessage += (bool isActive) => { gameObject.SetActive(isActive); };
+
+        dictionary = new();
+        dictionary.Add(MessageType.Error, (bool isActive) => { modal.SetActive(isActive); });
+        dictionary.Add(MessageType.EditStudent, (bool isActive) => { editStudent.SetActive(isActive); });
+        dictionary.Add(MessageType.EditJson, (bool isActive) => { editJson.SetActive(isActive); });
+
+        cancelStudent.onClick.AddListener(delegate { SetShow(MessageType.EditStudent, false); });
+        cancelJson.onClick.AddListener(delegate { SetShow(MessageType.EditJson, false); });
+        okError.onClick.AddListener(delegate { SetShow(MessageType.Error, false); });
+
         gameObject.SetActive(false);
     }
 
-    public void Show(string messageType)
+    public void SetShow(MessageType messageType, bool isShow)
     {
-        gameObject.SetActive(true);
-        editStudent.SetActive(messageType.ToLower().Equals(MessageType.Edit.ToString().ToLower()));
-        modal.SetActive(messageType.ToLower().Equals(MessageType.Error.ToString().ToLower()));
+        showMessage += dictionary[messageType];
+        showMessage(isShow);
+        showMessage -= dictionary[messageType];
     }
 
-    public void Hide(string messageType)
+    public void SetDataStudent(StudentModel student)
     {
-        gameObject.SetActive(false);
-        if (messageType.ToLower().Equals(MessageType.Edit.ToString().ToLower()))
-            editStudent.SetActive(false);
-        else modal.SetActive(false);
+        Student = student;
+        firstname.text = Student.firtsname;
+        surname.text = Student.surname;
+        age.text = Student.age.ToString();
+        balance.text = Student.balance.ToString();
+        SetShow(MessageType.EditStudent, true);
     }
 
-    public void SetDataToEdidt(StudentModel student)
+    public void SaveDataStudent()
     {
-        firstname.text = student.firtsname;
-        surname.text = student.surname;
-        age.text = student.age.ToString();
-        balance.text = student.balance.ToString();
-        Show(MessageType.Edit.ToString());
+        SetShow(MessageType.EditStudent, false);
+    }
+
+    public void SetJsonEdit(string jsonString)
+    {
+        SetShow(MessageType.EditJson, true);
+        jsonEdit.text = jsonString;
+    }
+
+    public void SaveJson()
+    {
+        GameManager.Instance.UpdateJson(jsonEdit.text);
+        SetShow(MessageType.EditJson, false);
     }
 }

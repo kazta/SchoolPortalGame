@@ -26,7 +26,7 @@ public class RowStudent : MonoBehaviour, IStudent
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = audio;
         check.onValueChanged.AddListener(delegate { ToggleValueChange(); });
-        more.onClick.AddListener(delegate { Message.Instance.SetDataToEdidt(Student); });
+        more.onClick.AddListener(delegate { Message.Instance.SetDataStudent(Student); });
     }
 
     public void SetStudent(StudentModel student)

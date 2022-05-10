@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Models;
 using Utils;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
     [SerializeField]
     private TextAsset jsonFile;
     [SerializeField]
@@ -16,11 +18,24 @@ public class GameManager : MonoBehaviour
 
     private int currentLevel;
     private List<int> rowsDisplayed;
-    private StudentModel[] students;
+    private StudentList students;
     private List<List<GameObject>> studentsRow;
+    private Object synclock = new();
+    private string path;
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+            lock (synclock)
+                if (Instance == null)
+                    Instance = this;
+    }
+
 
     private void Start()
     {
+        path = $"{Application.persistentDataPath}/students.json";
         currentLevel = 0;
         studentsRow = new();
         rowsDisplayed = new();
@@ -34,18 +49,32 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating("LoadJsonFile", 0, 7);
+        InvokeRepeating(nameof(LoadJsonFile), 0, 5);
     }
 
     private void OnDisable()
     {
-        CancelInvoke("LoadJsonFile");
+        CancelInvoke(nameof(LoadJsonFile));
     }
 
     #region data
     private void LoadJsonFile()
     {
-        students = JsonUtility.FromJson<StudentList>(jsonFile.text).students;
+        if (!File.Exists(path))
+        {
+            Debug.Log($"{path} has been created");
+            if (students?.students != null && students.students.Length > 0)
+            {
+                File.WriteAllText(path, JsonUtility.ToJson(new StudentList { students = students.students }, true));
+                Debug.Log("Based on previous data");
+            }
+            else
+            {
+                File.WriteAllText(path, jsonFile.text);
+                Debug.Log("Based on default data");
+            }
+        }
+        students = JsonUtility.FromJson<StudentList>(File.ReadAllText(path));
         UpdateRows();
     }
 
@@ -59,9 +88,9 @@ public class GameManager : MonoBehaviour
 
         var rows = studentsRow[currentLevel];
 
-        if (rows.Count < students.Length)
+        if (rows.Count < students.students.Length)
         {
-            var difference = students.Length - rows.Count;
+            var difference = students.students.Length - rows.Count;
 
             for (int i = 0; i < difference; i++)
             {
@@ -71,10 +100,10 @@ public class GameManager : MonoBehaviour
                 rows.Add(obj);
             }
         }
-        if (rowsDisplayed[currentLevel] > students.Length)
+        if (rowsDisplayed[currentLevel] > students.students.Length)
         {
 
-            var difference = rowsDisplayed[currentLevel] - students.Length;
+            var difference = rowsDisplayed[currentLevel] - students.students.Length;
 
             for (int i = 0; i < difference; i++)
             {
@@ -82,9 +111,9 @@ public class GameManager : MonoBehaviour
                 rowsDisplayed[currentLevel]--;
             }
         }
-        else if (rowsDisplayed[currentLevel] < students.Length)
+        else if (rowsDisplayed[currentLevel] < students.students.Length)
         {
-            var difference = students.Length - rowsDisplayed[currentLevel];
+            var difference = students.students.Length - rowsDisplayed[currentLevel];
 
             for (int i = 0; i < difference; i++)
             {
@@ -99,9 +128,9 @@ public class GameManager : MonoBehaviour
     private void UpdateData()
     {
         var rows = studentsRow[currentLevel];
-        for (int i = 0; i < students.Length; i++)
+        for (int i = 0; i < students.students.Length; i++)
         {
-            rows[i].GetComponent<IStudent>().SetStudent(students[i]);
+            rows[i].GetComponent<IStudent>().SetStudent(students.students[i]);
         }
     }
 
@@ -112,11 +141,22 @@ public class GameManager : MonoBehaviour
         {
             if (!student.GetComponent<IStudent>().ValidateFinalGrade())
             {
-                Message.Instance.Show(MessageType.Error.ToString());
+                Message.Instance.SetShow(MessageType.Error, true);
                 return;
             }
         }
         NextLevel();
+    }
+
+    public void OpenJson()
+    {
+        Message.Instance.SetJsonEdit(JsonUtility.ToJson(new StudentList { students = students.students }, true));
+    }
+
+    public void UpdateJson(string jsonString)
+    {
+        File.WriteAllText(path, jsonString);
+        LoadJsonFile();
     }
     #endregion
 
@@ -129,22 +169,12 @@ public class GameManager : MonoBehaviour
             currentLevel++;
             if (currentLevel == levels.Length)
             {
-                CancelInvoke("LoadJsonFile");
+                CancelInvoke(nameof(LoadJsonFile));
                 return;
             }
             LoadJsonFile();
             levels[currentLevel].SetActive(true);
         }
-    }
-
-    private void ResetLevel()
-    {
-
-    }
-
-    private void RestartGame()
-    {
-
     }
     #endregion
 }

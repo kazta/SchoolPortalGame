@@ -10,6 +10,7 @@ namespace Utils
     public enum MessageType
     {
         Error,
-        Edit
+        EditStudent,
+        EditJson
     }
 }
