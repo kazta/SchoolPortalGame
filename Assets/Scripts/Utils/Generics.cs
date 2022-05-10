@@ -6,4 +6,11 @@ namespace Utils
         Approved,
         Neutral
     }
+
+    public enum MessageType
+    {
+        Error,
+        EditStudent,
+        EditJson
+    }
 }
