@@ -1,61 +1,364 @@
 {
     "students": [
         {
-            "id": "6275399000e47eda68a711b8",
+            "id": "627aa0c6626e805fda0b5c62",
             "index": 0,
-            "balance": 0.37,
-            "age": 14,
-            "firtsname": "Lindsay",
-            "surname": "Duncan"
+            "finalGrade": 4.78,
+            "age": 34,
+            "firtsname": "Evangeline",
+            "surname": "Richardson"
         },
         {
-            "id": "62753990f74cc91873f6fd95",
+            "id": "627aa0c6b596c817c140c224",
             "index": 1,
-            "balance": 2.51,
-            "age": 35,
-            "firtsname": "Blackwell",
-            "surname": "Myers"
+            "finalGrade": 3.67,
+            "age": 14,
+            "firtsname": "Kerri",
+            "surname": "Avila"
         },
         {
-            "id": "62753990f54ad51ccbb8eb3a",
+            "id": "627aa0c64969c29326d92aa1",
             "index": 2,
-            "balance": 0.16,
-            "age": 16,
-            "firtsname": "Elma",
-            "surname": "Murray"
+            "finalGrade": 3.16,
+            "age": 34,
+            "firtsname": "Jackson",
+            "surname": "Kramer"
         },
         {
-            "id": "62753990e3be4b0cc24ae276",
+            "id": "627aa0c600687fff41b0ea14",
             "index": 3,
-            "balance": 1.87,
-            "age": 15,
-            "firtsname": "Kathrine",
+            "finalGrade": 3.22,
+            "age": 24,
+            "firtsname": "Sonya",
+            "surname": "Foster"
+        },
+        {
+            "id": "627aa0c6713d67aa592ae9d4",
+            "index": 4,
+            "finalGrade": 3.25,
+            "age": 39,
+            "firtsname": "Conrad",
+            "surname": "Cannon"
+        },
+        {
+            "id": "627aa0c6b8c851f6da887220",
+            "index": 5,
+            "finalGrade": 1.12,
+            "age": 14,
+            "firtsname": "Rachael",
+            "surname": "Soto"
+        },
+        {
+            "id": "627aa0c669f11d5958521627",
+            "index": 6,
+            "finalGrade": 1.22,
+            "age": 17,
+            "firtsname": "Mays",
+            "surname": "Pitts"
+        },
+        {
+            "id": "627aa0c6ab496c3b8f81f93a",
+            "index": 7,
+            "finalGrade": 1.16,
+            "age": 17,
+            "firtsname": "Tran",
+            "surname": "Carrillo"
+        },
+        {
+            "id": "627aa0c6b76a65f884b6d7c4",
+            "index": 8,
+            "finalGrade": 4.34,
+            "age": 39,
+            "firtsname": "Gwen",
+            "surname": "Waters"
+        },
+        {
+            "id": "627aa0c6b6f7b8712271ed59",
+            "index": 9,
+            "finalGrade": 4.96,
+            "age": 25,
+            "firtsname": "Hendrix",
+            "surname": "Hammond"
+        },
+        {
+            "id": "627aa0c6e8d738c92cf416ed",
+            "index": 10,
+            "finalGrade": 3.21,
+            "age": 19,
+            "firtsname": "Allison",
+            "surname": "Hunter"
+        },
+        {
+            "id": "627aa0c608835d53cd731031",
+            "index": 11,
+            "finalGrade": 3.99,
+            "age": 37,
+            "firtsname": "Lorrie",
+            "surname": "Bullock"
+        },
+        {
+            "id": "627aa0c6e88143374ed3a3bc",
+            "index": 12,
+            "finalGrade": 3.03,
+            "age": 27,
+            "firtsname": "Levine",
+            "surname": "Albert"
+        },
+        {
+            "id": "627aa0c64b2504d41bf9a027",
+            "index": 13,
+            "finalGrade": 3.1,
+            "age": 29,
+            "firtsname": "Lakeisha",
+            "surname": "Fuller"
+        },
+        {
+            "id": "627aa0c61f762ebac2b3e583",
+            "index": 14,
+            "finalGrade": 2.94,
+            "age": 29,
+            "firtsname": "Sheryl",
+            "surname": "Osborn"
+        },
+        {
+            "id": "627aa0c6d9cfce6fb3dff032",
+            "index": 15,
+            "finalGrade": 3.38,
+            "age": 12,
+            "firtsname": "Kendra",
+            "surname": "Lott"
+        },
+        {
+            "id": "627aa0c639d703e9ae10aaa3",
+            "index": 16,
+            "finalGrade": 4.23,
+            "age": 20,
+            "firtsname": "Rasmussen",
+            "surname": "Foreman"
+        },
+        {
+            "id": "627aa0c6e2c2ac96d24dc811",
+            "index": 17,
+            "finalGrade": 0.9,
+            "age": 13,
+            "firtsname": "Diann",
+            "surname": "Daniels"
+        },
+        {
+            "id": "627aa0c608fecc0cfed9188f",
+            "index": 18,
+            "finalGrade": 2.53,
+            "age": 24,
+            "firtsname": "Dana",
+            "surname": "Steele"
+        },
+        {
+            "id": "627aa0c6f43a8662efe5aae0",
+            "index": 19,
+            "finalGrade": 0.43,
+            "age": 12,
+            "firtsname": "Norman",
+            "surname": "Hardin"
+        },
+        {
+            "id": "627aa0c6a8185b9008300f12",
+            "index": 20,
+            "finalGrade": 0.85,
+            "age": 14,
+            "firtsname": "Tabitha",
+            "surname": "Jordan"
+        },
+        {
+            "id": "627aa0c6e4ba0279fa7e4c61",
+            "index": 21,
+            "finalGrade": 1.91,
+            "age": 33,
+            "firtsname": "Margret",
+            "surname": "Adkins"
+        },
+        {
+            "id": "627aa0c64082c19cbf69cce3",
+            "index": 22,
+            "finalGrade": 1.73,
+            "age": 30,
+            "firtsname": "Bettie",
+            "surname": "Serrano"
+        },
+        {
+            "id": "627aa0c6bf55f68c387df38a",
+            "index": 23,
+            "finalGrade": 3.86,
+            "age": 14,
+            "firtsname": "Robinson",
+            "surname": "Barrett"
+        },
+        {
+            "id": "627aa0c60e5bd75a681700cf",
+            "index": 24,
+            "finalGrade": 4.15,
+            "age": 14,
+            "firtsname": "Mccarthy",
+            "surname": "Moore"
+        },
+        {
+            "id": "627aa0c6ff1c260f26506740",
+            "index": 25,
+            "finalGrade": 1.77,
+            "age": 35,
+            "firtsname": "Kim",
             "surname": "Simmons"
         },
         {
-            "id": "62753990879470a8d2a94933",
-            "index": 4,
-            "balance": 3.62,
-            "age": 13,
-            "firtsname": "Compton",
-            "surname": "Armstrong"
+            "id": "627aa0c652fc05daff4b280e",
+            "index": 26,
+            "finalGrade": 2.08,
+            "age": 33,
+            "firtsname": "Marylou",
+            "surname": "Russo"
         },
         {
-            "id": "62753990879470a8d2b94933",
-            "index": 5,
-            "balance": 3.89,
-            "age": 13,
-            "firtsname": "Carmenon",
-            "surname": "Armstrong"
+            "id": "627aa0c6b984f88b581cb665",
+            "index": 27,
+            "finalGrade": 1.79,
+            "age": 22,
+            "firtsname": "Gilbert",
+            "surname": "Joyce"
         },
         {
-            "id": "72753990879470a8d2b94933",
-            "index": 5,
-            "balance": 5.00,
-            "age": 13,
-            "firtsname": "Tastiana",
-            "surname": "Diaz"
+            "id": "627aa0c69342f2c6866fc2d8",
+            "index": 28,
+            "finalGrade": 2.84,
+            "age": 17,
+            "firtsname": "Helene",
+            "surname": "Mays"
+        },
+        {
+            "id": "627aa0c6dbaed9baeaacbcb8",
+            "index": 29,
+            "finalGrade": 3.53,
+            "age": 37,
+            "firtsname": "Maryanne",
+            "surname": "Olson"
+        },
+        {
+            "id": "627aa0c6a58be2063e642121",
+            "index": 30,
+            "finalGrade": 0.46,
+            "age": 37,
+            "firtsname": "Monique",
+            "surname": "Obrien"
+        },
+        {
+            "id": "627aa0c6b539adf178c2ff01",
+            "index": 31,
+            "finalGrade": 4.35,
+            "age": 40,
+            "firtsname": "Frances",
+            "surname": "Lawson"
+        },
+        {
+            "id": "627aa0c611084ad0734d8110",
+            "index": 32,
+            "finalGrade": 3.97,
+            "age": 38,
+            "firtsname": "Riddle",
+            "surname": "Carney"
+        },
+        {
+            "id": "627aa0c663d2c449b544196b",
+            "index": 33,
+            "finalGrade": 0.35,
+            "age": 18,
+            "firtsname": "Combs",
+            "surname": "Goodman"
+        },
+        {
+            "id": "627aa0c677d86e02fba3b57f",
+            "index": 34,
+            "finalGrade": 3.48,
+            "age": 21,
+            "firtsname": "Larson",
+            "surname": "Drake"
+        },
+        {
+            "id": "627aa0c6ecf05978796d3bcd",
+            "index": 35,
+            "finalGrade": 2,
+            "age": 36,
+            "firtsname": "Watson",
+            "surname": "Hester"
+        },
+        {
+            "id": "627aa0c696ad859986058266",
+            "index": 36,
+            "finalGrade": 2.08,
+            "age": 28,
+            "firtsname": "Pat",
+            "surname": "Talley"
+        },
+        {
+            "id": "627aa0c6e6bd7e167005d393",
+            "index": 37,
+            "finalGrade": 0.42,
+            "age": 16,
+            "firtsname": "Chrystal",
+            "surname": "Mullen"
+        },
+        {
+            "id": "627aa0c6c82bf0f4c1a1d775",
+            "index": 38,
+            "finalGrade": 2.06,
+            "age": 37,
+            "firtsname": "House",
+            "surname": "Mccullough"
+        },
+        {
+            "id": "627aa0c6917c9e048fa513a4",
+            "index": 39,
+            "finalGrade": 3.55,
+            "age": 22,
+            "firtsname": "Joanne",
+            "surname": "Alvarado"
+        },
+        {
+            "id": "627aa0c605295a3644a81c8c",
+            "index": 40,
+            "finalGrade": 3.2,
+            "age": 25,
+            "firtsname": "Glover",
+            "surname": "Mccormick"
+        },
+        {
+            "id": "627aa0c64497e1bc20157383",
+            "index": 41,
+            "finalGrade": 2.74,
+            "age": 34,
+            "firtsname": "Isabella",
+            "surname": "Mendez"
+        },
+        {
+            "id": "627aa0c66aa95a57b0897e81",
+            "index": 42,
+            "finalGrade": 2.72,
+            "age": 27,
+            "firtsname": "Wilkinson",
+            "surname": "Cline"
+        },
+        {
+            "id": "627aa0c6b69ff50aec428d13",
+            "index": 43,
+            "finalGrade": 0.4,
+            "age": 15,
+            "firtsname": "Hooper",
+            "surname": "Guerrero"
+        },
+        {
+            "id": "627aa0c6be017ae92007cfbb",
+            "index": 44,
+            "finalGrade": 1.49,
+            "age": 37,
+            "firtsname": "Alexander",
+            "surname": "Alvarez"
         }
-
     ]
 }

@@ -75,7 +75,7 @@ public class Message : MonoBehaviour
         firstname.text = Student.firtsname;
         surname.text = Student.surname;
         age.text = Student.age.ToString();
-        balance.text = Student.balance.ToString();
+        balance.text = Student.finalGrade.ToString();
         SetShow(MessageType.EditStudent, true);
     }
 
@@ -84,7 +84,7 @@ public class Message : MonoBehaviour
         Student.firtsname = firstname.text;
         Student.surname = surname.text;
         Student.age = short.Parse(age.text);
-        Student.balance = float.Parse(balance.text);
+        Student.finalGrade = float.Parse(balance.text);
         GameManager.Instance.UpdateStudent(Student);
         SetShow(MessageType.EditStudent, false);
     }

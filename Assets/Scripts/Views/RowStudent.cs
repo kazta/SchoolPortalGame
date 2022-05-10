@@ -31,12 +31,12 @@ public class RowStudent : MonoBehaviour, IStudent
         Student = student;
         firstname.text = Student.firtsname;
         surname.text = Student.surname;
-        balance.text = Student.balance.ToString();
+        balance.text = Student.finalGrade.ToString();
     }
 
     public bool ValidateFinalGrade()
     {
-        return (Student.balance > 2.9f && check.isOn) || (Student.balance < 3 && !check.isOn);
+        return (Student.finalGrade > 2.9f && check.isOn) || (Student.finalGrade < 3 && !check.isOn);
     }
 
     private void ToggleValueChange()
