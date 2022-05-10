@@ -81,6 +81,11 @@ public class Message : MonoBehaviour
 
     public void SaveDataStudent()
     {
+        Student.firtsname = firstname.text;
+        Student.surname = surname.text;
+        Student.age = short.Parse(age.text);
+        Student.balance = float.Parse(balance.text);
+        GameManager.Instance.UpdateStudent(Student);
         SetShow(MessageType.EditStudent, false);
     }
 

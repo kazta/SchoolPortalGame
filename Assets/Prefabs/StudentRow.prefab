@@ -591,7 +591,6 @@ MonoBehaviour:
   balance: {fileID: 3173720267865827042}
   check: {fileID: 3173720268497211136}
   more: {fileID: 4665593689319857523}
-  audio: {fileID: 8300000, guid: becf2d19fedff7b479581f8ea2716d3c, type: 3}
 --- !u!82 &6965542463552503622
 AudioSource:
   m_ObjectHideFlags: 0
@@ -602,7 +601,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3228242023388516241, guid: 6d4ca13e143ce4bbda8758a2271ccd72, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: becf2d19fedff7b479581f8ea2716d3c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

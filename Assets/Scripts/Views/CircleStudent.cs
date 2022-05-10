@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using Models;
 using Utils;
 
-public class CircleStudent : MonoBehaviour, IStudent, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class CircleStudent : MonoBehaviour, IStudent, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
 {
     [SerializeField]
     private Text fullname;
@@ -58,5 +58,10 @@ public class CircleStudent : MonoBehaviour, IStudent, IDragHandler, IBeginDragHa
             return false;
         return (Student.balance > 2.9f && zoneType == ZoneType.Approved)
             || (Student.balance < 3 && zoneType == ZoneType.Failed);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Message.Instance.SetDataStudent(Student);
     }
 }
