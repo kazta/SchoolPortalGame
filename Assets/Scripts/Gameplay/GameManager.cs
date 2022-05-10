@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"{path} has been created");
             if (students?.students != null && students.students.Length > 0)
             {
-                File.WriteAllText(path, JsonUtility.ToJson(new StudentList { students = students.students }, true));
+                File.WriteAllText(path, JsonUtility.ToJson(students, true));
                 Debug.Log("Based on previous data");
             }
             else
@@ -150,13 +150,26 @@ public class GameManager : MonoBehaviour
 
     public void OpenJson()
     {
-        Message.Instance.SetJsonEdit(JsonUtility.ToJson(new StudentList { students = students.students }, true));
+        Message.Instance.SetJsonEdit(JsonUtility.ToJson(students, true));
     }
 
     public void UpdateJson(string jsonString)
     {
         File.WriteAllText(path, jsonString);
         LoadJsonFile();
+    }
+
+    public void UpdateStudent(StudentModel student)
+    {
+        for(int i = 0; i < students.students.Length; i++)
+        {
+            if (students.students[i].id.Equals(student.id))
+            {
+                students.students[i] = student;
+                break;
+            }
+        }
+        UpdateJson(JsonUtility.ToJson(students));
     }
     #endregion
 

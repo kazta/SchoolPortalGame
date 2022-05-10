@@ -14,8 +14,6 @@ public class RowStudent : MonoBehaviour, IStudent
     private Toggle check;
     [SerializeField]
     private Button more;
-    [SerializeField]
-    private AudioClip audio;
 
     private AudioSource audioSource;
 
@@ -24,7 +22,6 @@ public class RowStudent : MonoBehaviour, IStudent
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = audio;
         check.onValueChanged.AddListener(delegate { ToggleValueChange(); });
         more.onClick.AddListener(delegate { Message.Instance.SetDataStudent(Student); });
     }
@@ -35,7 +32,6 @@ public class RowStudent : MonoBehaviour, IStudent
         firstname.text = Student.firtsname;
         surname.text = Student.surname;
         balance.text = Student.balance.ToString();
-        check.isOn = Student.balance > 2.9f; //TODO: Eliminar set
     }
 
     public bool ValidateFinalGrade()
